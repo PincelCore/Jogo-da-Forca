@@ -7,12 +7,12 @@ export default function Letras() {
         <div className="controller">
             <div className="line">
                 {letras1.map(letra => (
-                    <div key={letra} className="letra">{letra}</div>
+                    <div key={letra} className="letra" disabled>{letra}</div>
                 ))}
             </div>
             <div className="line">
                 {letras2.map(letra => (
-                    <div key={letra} className="letra">{letra}</div>
+                    <div key={letra} className="letra" disabled>{letra}</div>
                 ))}
             </div>
 

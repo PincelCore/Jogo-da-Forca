@@ -11,7 +11,7 @@ body {
 .game {
     display: flex;
     justify-content: space-between;
-    width: 100vw;
+    width: 1025px;
 }
 
 .game img {
@@ -37,6 +37,7 @@ body {
 
 .game button:hover {
     cursor: pointer;
+    scale: 1.01;
 }
 
 .controller {
@@ -65,10 +66,6 @@ body {
     font-weight: 700;
     font-size: 16px;
     color: #798A9F;
+    cursor: not-allowed;
 
-}
-
-.letra:hover {
-    cursor: pointer;
-    scale: 1.05;
 }
