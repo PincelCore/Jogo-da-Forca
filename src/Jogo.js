@@ -5,9 +5,8 @@ import forca3 from './assets/forca3.png';
 import forca4 from './assets/forca4.png';
 import forca5 from './assets/forca5.png';
 import forca6 from './assets/forca6.png';
-import palavras from './palavras';
 
-export default function Jogo({ setStartGame, startGame, erros, setErros }) {
+export default function Jogo({ setStartGame, startGame, erros}) {
     let forca;
 
     switch (erros) {
@@ -34,12 +33,6 @@ export default function Jogo({ setStartGame, startGame, erros, setErros }) {
             forca = forca0;
     }
 
-    const handleStart = () => {
-        const palavra = palavras[Math.floor(Math.random() * palavras.length)];
-        console.log(palavra);
-        setStartGame(true);
-    };
-
     return (
         <div className="game">
 
@@ -49,25 +42,13 @@ export default function Jogo({ setStartGame, startGame, erros, setErros }) {
                     type="button"
                     className={startGame ? "started" : ""}
                     disabled={startGame ? "null" : ""}
-                    onClick={handleStart}
+                    onClick={() => setStartGame(true)}
                 >
                     Escolher Palavra
                 </button>
-                {startGame && <Start />}
             </div>
         </div>
     );
 }
 
-function Start() {
-    const palavra = palavras[Math.floor(Math.random() * palavras.length)];
-    const caracteres = palavra.split("");
 
-    return (
-        <div className='word'>
-            {caracteres.map((caractere, index) => (
-                <span key={index}>_</span>
-            ))}
-        </div>
-    );
-}
