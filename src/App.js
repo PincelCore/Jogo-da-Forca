@@ -62,7 +62,7 @@ export default function App() {
     return (
       <div className="word">
         {caracteres.map((letra, index) => (
-          <span key={index} className={endGame && !defeat ? "win" : endGame && defeat ? "defeat" : ""}>
+          <span data-test="word" key={index} className={endGame && !defeat ? "win" : endGame && defeat ? "defeat" : ""}>
             {letrasAdvinhadas.includes(letra.toLowerCase()) ? letra : "_"}
           </span>
         ))}

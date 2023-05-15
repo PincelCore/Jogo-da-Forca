@@ -28,6 +28,7 @@ export default function Letras({ startGame, letterClicked, handleLetterClick, en
                     return (
                         <div
                             key={letra}
+                            data-test="letter"
                             className={`letra${enabled ? ' enabled' : ' disabled'}`}
                             onClick={() => enabled && handleLetterClick(letra)}
                             disabled={!enabled}

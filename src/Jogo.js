@@ -35,9 +35,10 @@ export default function Jogo({ setStartGame, startGame, erros, resetGame, endGam
 
     return (
         <div className="game">
-            <img src={forca} />
+            <img data-test="game-image" src={forca} />
             <div>
                 <button
+                    data-test="choose-word"
                     type="button"
                     className={startGame ? "started" : ""}
                     disabled={startGame && !endGame ? "null" : ""}
