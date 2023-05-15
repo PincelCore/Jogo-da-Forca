@@ -104,4 +104,14 @@ body {
 
 span {
     margin-right: 0.5em;
+    font-family: 'Noto Sans';
+    font-weight: 700;
+}
+.win{
+    color:green;
+    margin: 0;
+}
+.defeat{
+    color: red;
+    margin: 0;
 }

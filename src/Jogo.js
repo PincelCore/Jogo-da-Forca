@@ -6,7 +6,7 @@ import forca4 from './assets/forca4.png';
 import forca5 from './assets/forca5.png';
 import forca6 from './assets/forca6.png';
 
-export default function Jogo({ setStartGame, startGame, erros}) {
+export default function Jogo({ setStartGame, startGame, erros, resetGame, endGame }) {
     let forca;
 
     switch (erros) {
@@ -35,14 +35,16 @@ export default function Jogo({ setStartGame, startGame, erros}) {
 
     return (
         <div className="game">
-
             <img src={forca} />
             <div>
                 <button
                     type="button"
                     className={startGame ? "started" : ""}
-                    disabled={startGame ? "null" : ""}
-                    onClick={() => setStartGame(true)}
+                    disabled={startGame && !endGame ? "null" : ""}
+                    onClick={() => {
+                        resetGame();
+                        setStartGame(!startGame);
+                    }}
                 >
                     Escolher Palavra
                 </button>

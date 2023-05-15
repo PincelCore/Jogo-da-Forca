@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import "typeface-roboto";
+import "typeface-noto-sans";
 import './css/reset.css';
 import './css/style.css';
 

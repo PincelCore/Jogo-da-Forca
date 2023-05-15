@@ -9,6 +9,8 @@ export default function App() {
   let [erros, setErros] = useState(0);
   const [palavra, setPalavra] = useState("");
   const [letrasAdvinhadas, setLetrasAdvinhadas] = useState([]);
+  const [endGame, setEndGame] = useState(false);
+  const [defeat, setDefeat] = useState(false);
 
   useEffect(() => {
     if (startGame) {
@@ -50,15 +52,17 @@ export default function App() {
 
     checkLetter(letra);
     setLetterClicked([...letterClicked, letra]);
+    checkEndGame();
   }
 
   function Start() {
     const caracteres = palavra.split("");
+    console.log(palavra);
 
     return (
       <div className="word">
         {caracteres.map((letra, index) => (
-          <span key={index}>
+          <span key={index} className={endGame && !defeat ? "win" : endGame && defeat ? "defeat" : ""}>
             {letrasAdvinhadas.includes(letra.toLowerCase()) ? letra : "_"}
           </span>
         ))}
@@ -66,15 +70,54 @@ export default function App() {
     );
   }
 
+  function checkEndGame() {
+    console.log(erros);
+
+    const caracteres = palavra.split("");
+    const uniqueLetters = new Set(caracteres);
+    const guessedLetters = new Set(letrasAdvinhadas);
+
+    if (!startGame) {
+      return;
+    }
+    if (uniqueLetters.size === guessedLetters.size) {
+      setEndGame(true);
+    } else if (erros === 6) {
+      setEndGame(true);
+      setDefeat(true);
+      setLetrasAdvinhadas(caracteres);
+    }
+
+    console.log(letrasAdvinhadas);
+  }
+
+  useEffect(() => {
+    checkEndGame();
+  }, [letrasAdvinhadas, erros]);
+
+  function resetGame() {
+    if (endGame) {
+      setPalavra("");
+      setLetrasAdvinhadas([]);
+      setErros(0);
+      setEndGame(false);
+      setDefeat(false);
+      Start();
+    }
+  }
+
   return (
     <div className="App">
       <Jogo setStartGame={setStartGame}
         startGame={startGame}
-        erros={erros} />
+        erros={erros}
+        resetGame={resetGame}
+        endGame={endGame} />
       <div className="word">
         {startGame && <Start />}
       </div>
       <Letras startGame={startGame}
+        endGame={endGame}
         letterClicked={letterClicked}
         setLetterClickd={setLetterClicked}
         handleLetterClick={handleLetterClick} />

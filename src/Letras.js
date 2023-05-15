@@ -1,4 +1,4 @@
-export default function Letras({ startGame, letterClicked, handleLetterClick, checkLetter }) {
+export default function Letras({ startGame, letterClicked, handleLetterClick, endGame }) {
     const letras = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
     const letras1 = letras.slice(0, 13);
     const letras2 = letras.slice(13);
@@ -7,7 +7,7 @@ export default function Letras({ startGame, letterClicked, handleLetterClick, ch
         <div className="controller">
             <div className="line">
                 {letras1.map(letra => {
-                    const enabled = startGame && !letterClicked.includes(letra);
+                    const enabled = startGame && !endGame && !letterClicked.includes(letra);
 
                     return (
                         <div
@@ -23,7 +23,7 @@ export default function Letras({ startGame, letterClicked, handleLetterClick, ch
             </div>
             <div className="line">
                 {letras2.map(letra => {
-                    const enabled = startGame && !letterClicked.includes(letra);
+                    const enabled = startGame && !endGame && !letterClicked.includes(letra);
 
                     return (
                         <div
